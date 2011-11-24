@@ -40,14 +40,14 @@ public class BindingEditorComponent implements ModuleComponent {
 
     public void initComponent() {
         if (shouldActivate) {
-            annotator = new JiBXAnnotator(module);
-            LanguageAnnotators.INSTANCE.addExpicitExtension(StdLanguages.XML, annotator);
+            annotator = new JiBXAnnotator();
+            LanguageAnnotators.INSTANCE.addExplicitExtension(StdLanguages.XML, annotator);
         }
     }
 
     public void disposeComponent() {
         if (shouldActivate)
-            LanguageAnnotators.INSTANCE.removeExpicitExtension(StdLanguages.XML, annotator);
+            LanguageAnnotators.INSTANCE.removeExplicitExtension(StdLanguages.XML, annotator);
     }
 
 }

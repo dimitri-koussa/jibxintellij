@@ -26,7 +26,7 @@ public class DeleteMappingAction extends AnAction {
         Module module = (Module) event.getDataContext().getData(DataConstants.MODULE);
         if (psiBinding == null || psiBinding.getVirtualFile() == null)
             return;
-        module.getComponent(BindingCompilerModuleComponent.class).deleteBinding(psiBinding.getVirtualFile());
+        module.getComponent(BindingCompilerModuleComponent.class).removeBinding(psiBinding.getVirtualFile());
         logger.info("Deleted JiBX binding: " + psiBinding.getVirtualFile().getPath());
     }
 }

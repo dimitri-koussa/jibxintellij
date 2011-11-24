@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e69cc6cc-482c-42bc-b3fc-d1b43ccdf390" name="Default" comment="" />
+    <list default="true" id="e69cc6cc-482c-42bc-b3fc-d1b43ccdf390" name="Default" comment="Updated idea project files to get IDEA to recognise it as a plugin.&#10;&#10;Configuration files assume a specific location for the IDEA SDK">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/TODO" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java" afterPath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java" afterPath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java" afterPath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java" />
+    </list>
     <ignored path="jibxintellij.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -66,8 +73,8 @@
       <property name="field_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByClasses" value="true" />
       <property name="exception_breakpoints_viewId" value="TABLE" />
-      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="field_breakpoints_viewId" value="TABLE" />
+      <property name="exception_breakpoints_groupByClasses" value="true" />
       <property name="method_breakpoints_groupByMethods" value="false" />
     </ui_properties>
   </component>
@@ -80,55 +87,82 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AddMappingAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/actions/AddMappingAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeleteMappingAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/actions/DeleteMappingAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FactoryMethodReference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/FactoryMethodReference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="6" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FieldReference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/FieldReference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="6" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetMethodReference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/GetMethodReference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="6" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JiBXAnnotator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="11" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0">
+            <state line="38" column="17" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TODO" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/TODO">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="0" selection-start="60" selection-end="60" vertical-scroll-proportion="0.014955134">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModuleUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/module/ModuleUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="100" column="23" selection-start="3612" selection-end="3612" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/project/ProjectUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="13" selection-start="1440" selection-end="1440" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LanguageLevelUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/java/openapi/src/com/intellij/openapi/module/LanguageLevelUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="29" column="13" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectLocatorImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/project/ProjectLocatorImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="13" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AnnotationHolder.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/lang/annotation/AnnotationHolder.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="17" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProjectFileIndexImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-impl/src/com/intellij/openapi/roots/impl/ProjectFileIndexImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="13" selection-start="1469" selection-end="1469" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VfsUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/vfs/VfsUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="214" column="26" selection-start="8353" selection-end="8353" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -143,55 +177,55 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Module.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/module/Module.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="79" column="23" selection-start="2213" selection-end="2213" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DefaultHighlightVisitor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-impl/src/com/intellij/codeInsight/daemon/impl/DefaultHighlightVisitor.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="128" column="0" selection-start="4816" selection-end="4816" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BindingEditorComponent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="51" column="0" selection-start="1425" selection-end="1425" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GetMethodReference.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/GetMethodReference.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="6" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VirtualFile.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/vfs/VirtualFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="25" selection-start="2942" selection-end="2942" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="BindingCompilerModuleComponent.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingCompilerModuleComponent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="0" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugin.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="51" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServiceManager.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///usr/lib/jvm/java-6-sun/jre/lib/javaws.jar!/javax/jnlp/ServiceManager.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="19" selection-start="154" selection-end="168" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SetMethodReference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/SetMethodReference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="6" selection-start="557" selection-end="557" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestMethodReference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/TestMethodReference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="6" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AddMappingAction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/AddMappingAction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="13" selection-start="912" selection-end="912" vertical-scroll-proportion="0.0">
+            <state line="24" column="33" selection-start="879" selection-end="879" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -206,19 +240,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeleteMappingAction.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java">
+      <file leaf-file-name="Compile.class" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$PROJECT_DIR$/lib/jibx-bind.jar!/org/jibx/binding/Compile.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="0" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.4211663">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BindingEditorComponent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="37" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
+            <state line="25" column="16" selection-start="944" selection-end="944" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -244,10 +269,15 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/main/Main.iml" />
-        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java" />
         <option value="$PROJECT_DIR$/src/main/META-INF/plugin.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingCompilerModuleComponent.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java" />
         <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
+        <option value="$PROJECT_DIR$/../../idea/platform/lang-impl/src/com/intellij/codeInsight/daemon/impl/PerThreadMap.java" />
+        <option value="$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/components/ComponentManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java" />
+        <option value="$PROJECT_DIR$/TODO" />
       </list>
     </option>
   </component>
@@ -283,22 +313,18 @@
       <showLibraryContents />
       <hideEmptyPackages />
       <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollToSource ProjectPane="true" />
+      <autoscrollFromSource ProjectPane="true" />
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="jibxintellij" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -347,33 +373,35 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jibxintellij" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jibxintellij-git-idea" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intellij" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="psi" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="MemberChooser.sorted" value="false" />
@@ -384,9 +412,9 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Plugin.jibxintellij">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -521,18 +549,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="772" y="24" width="1746" height="1576" extended-state="0" />
-    <editor active="true" />
+    <frame x="762" y="24" width="1805" height="1576" extended-state="4" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958537" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32958537" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27547434" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24985129" sideWeight="0.6704146" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39985946" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3413793" sideWeight="0.72452563" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39915672" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958537" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -588,68 +616,79 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/actions/DeleteMappingAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/FactoryMethodReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="6" selection-start="462" selection-end="462" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/FieldReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/GetMethodReference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="6" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="11" selection-start="701" selection-end="701" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXReferencesToJavaCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingCompilerModuleComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="0" selection-start="2426" selection-end="2426" vertical-scroll-proportion="0.0">
+        <state line="17" column="13" selection-start="601" selection-end="601" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/vfs/VfsUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="51" selection-start="675" selection-end="675" vertical-scroll-proportion="0.0">
+        <state line="214" column="26" selection-start="8353" selection-end="8353" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-6-sun/jre/lib/javaws.jar!/javax/jnlp/ServiceManager.class">
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-impl/src/com/intellij/openapi/roots/impl/ProjectFileIndexImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="19" selection-start="154" selection-end="168" vertical-scroll-proportion="0.0" />
+        <state line="37" column="13" selection-start="1469" selection-end="1469" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/SetMethodReference.java">
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/lang/annotation/AnnotationHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="6" selection-start="557" selection-end="557" vertical-scroll-proportion="0.0" />
+        <state line="30" column="17" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/TestMethodReference.java">
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/project/ProjectLocatorImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="6" selection-start="539" selection-end="539" vertical-scroll-proportion="0.0" />
+        <state line="31" column="13" selection-start="972" selection-end="972" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/AddMappingAction.java">
+    <entry file="jar://$USER_HOME$/opt/idea/lib/openapi.jar!/com/intellij/openapi/project/package.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="13" selection-start="912" selection-end="912" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/project/ProjectLocator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="22" selection-start="901" selection-end="901" vertical-scroll-proportion="0.05376344">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/platform-api/src/com/intellij/openapi/vfs/VirtualFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="25" selection-start="2942" selection-end="2942" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/project/ProjectUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="13" selection-start="1440" selection-end="1440" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../idea/platform/lang-api/src/com/intellij/openapi/module/ModuleUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="23" selection-start="3612" selection-end="3612" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../idea/java/openapi/src/com/intellij/openapi/module/LanguageLevelUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="13" selection-start="1104" selection-end="1104" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -663,21 +702,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/BindingEditorComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="37" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
+        <state line="51" column="0" selection-start="1425" selection-end="1425" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/actions/AddMappingAction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/GetMethodReference.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1420" selection-end="1420" vertical-scroll-proportion="0.0">
+        <state line="18" column="6" selection-start="587" selection-end="587" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/DeleteMappingAction.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/psi/JiBXAnnotator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1611" selection-end="1611" vertical-scroll-proportion="0.4211663">
+        <state line="38" column="17" selection-start="1828" selection-end="1828" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TODO">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="60" selection-end="60" vertical-scroll-proportion="0.014955134">
           <folding />
         </state>
       </provider>

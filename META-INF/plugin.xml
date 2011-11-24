@@ -2,9 +2,9 @@
 <idea-plugin>
     <name>JiBX</name>
     <description>Run JiBX binding compiler after the javac compiler has run and provides validation support.</description>
-    <version>2.0.4</version>
+    <version>2.0.5</version>
     <vendor url="http://www.kalixia.com" email="jerome.bernard@kalixia.com">Kalixia, SARL.</vendor>
-    <idea-version since-build="8280" until-build="8999"/>
+    <idea-version since-build="107.587"/>
 
     <change-notes>
 	<![CDATA[
@@ -14,8 +14,12 @@
 	        <br>
 	        <br>
             Changes:<br>
-            - [NEW] Support for Diana (EAP) releases.
-            - [NEW] Updated in order to embed JiBX version 1.1.6a
+            2.0.5
+            - [NEW] Support for IDEA 10.5
+
+            2.0.4 and older
+            - Support for Diana (EAP) releases.
+            - Updated in order to embed JiBX version 1.1.6a
             - added support for navigation with <em>factory</em> attributes
             - now dealing with navigation between XML and Java code and handling refactoring
             - fixed classpath issues<br>
