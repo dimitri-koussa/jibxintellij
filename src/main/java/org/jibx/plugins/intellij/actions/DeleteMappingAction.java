@@ -14,23 +14,27 @@ import org.jibx.plugins.intellij.BindingCompilerModuleComponent;
 
 /**
  * Delete a JiBX mapping to the list of mappings.
+ *
  * @author Jerome Bernard (jerome.bernard@kalixia.com)
  */
 public class DeleteMappingAction extends AnAction {
-    private Logger logger = Logger.getLogger(getClass());
+	private Logger logger = Logger.getLogger(getClass());
 
-    public void actionPerformed(AnActionEvent event) {
-        PsiFile psiBinding = (PsiFile) event.getDataContext().getData(DataConstants.PSI_FILE);
-        Module module = (Module) event.getDataContext().getData(DataConstants.MODULE);
-        if (psiBinding == null)
-            return;
-        VirtualFile binding = psiBinding.getVirtualFile();
-        if (binding == null)
-            return;
-        assert module != null : "The current module should not be null!";
-        BindingCompilerModuleComponent compiler = module.getComponent(BindingCompilerModuleComponent.class);
-        compiler.removeBinding(binding);
-        if (logger.isInfoEnabled())
-            logger.info(String.format("Deleted JiBX binding: %s", binding.getPath()));
-    }
+	public void actionPerformed(AnActionEvent event) {
+		PsiFile psiBinding = (PsiFile) event.getDataContext().getData(DataConstants.PSI_FILE);
+		Module module = (Module) event.getDataContext().getData(DataConstants.MODULE);
+		if (psiBinding == null) {
+			return;
+		}
+		VirtualFile binding = psiBinding.getVirtualFile();
+		if (binding == null) {
+			return;
+		}
+		assert module != null : "The current module should not be null!";
+		BindingCompilerModuleComponent compiler = module.getComponent(BindingCompilerModuleComponent.class);
+		compiler.removeBinding(binding);
+		if (logger.isInfoEnabled()) {
+			logger.info(String.format("Deleted JiBX binding: %s", binding.getPath()));
+		}
+	}
 }

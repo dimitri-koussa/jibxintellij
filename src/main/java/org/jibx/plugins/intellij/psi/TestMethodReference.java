@@ -14,70 +14,71 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 class TestMethodReference implements PsiReference {
-    private final PsiClass psiClass;
-    private final XmlAttribute fieldAttribute;
-    private final XmlAttributeValue fieldAttributeValue;
-    private final PsiMethod[] methods;
+	private final PsiClass psiClass;
+	private final XmlAttribute fieldAttribute;
+	private final XmlAttributeValue fieldAttributeValue;
+	private final PsiMethod[] methods;
 
-    public TestMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
-        this.psiClass = psiClass;
-        this.fieldAttribute = fieldAttribute;
-        this.fieldAttributeValue = fieldAttribute.getValueElement();
-        this.methods = psiClass.getAllMethods();
-    }
+	public TestMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
+		this.psiClass = psiClass;
+		this.fieldAttribute = fieldAttribute;
+		this.fieldAttributeValue = fieldAttribute.getValueElement();
+		this.methods = psiClass.getAllMethods();
+	}
 
-    public PsiElement getElement() {
-        return fieldAttributeValue;
-    }
+	public PsiElement getElement() {
+		return fieldAttributeValue;
+	}
 
-    public TextRange getRangeInElement() {
-        return new TextRange(1, getElement().getTextRange().getLength() - 1);
-    }
+	public TextRange getRangeInElement() {
+		return new TextRange(1, getElement().getTextRange().getLength() - 1);
+	}
 
-    @Nullable
-    public PsiElement resolve() {
-        String value = fieldAttributeValue.getValue();
-        PsiMethod[] completions = psiClass.findMethodsByName(value, true);
-        PsiMethod method = null;
-        // if we didn't find the field, search for one whose name starts with the value typed
-        switch (completions.length) {
-            case 0:
-                method = null;
-                break;
-            case 1:
-                method = completions[0];
-                break;
-            default:
-                for (PsiMethod test : methods) {
-                    if (test.getName().startsWith(value))
-                        method = psiClass.findMethodsByName(value, true)[0];
-                }
-        }
-        return method;
-    }
+	@Nullable
+	public PsiElement resolve() {
+		String value = fieldAttributeValue.getValue();
+		PsiMethod[] completions = psiClass.findMethodsByName(value, true);
+		PsiMethod method = null;
+		// if we didn't find the field, search for one whose name starts with the value typed
+		switch (completions.length) {
+			case 0:
+				method = null;
+				break;
+			case 1:
+				method = completions[0];
+				break;
+			default:
+				for (PsiMethod test : methods) {
+					if (test.getName().startsWith(value)) {
+						method = psiClass.findMethodsByName(value, true)[0];
+					}
+				}
+		}
+		return method;
+	}
 
-    public String getCanonicalText() {
-        return fieldAttributeValue.getValue();
-    }
+	public String getCanonicalText() {
+		return fieldAttributeValue.getValue();
+	}
 
-    public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
-        fieldAttribute.setValue(newElementName);
-        return fieldAttributeValue;
-    }
+	public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
+		fieldAttribute.setValue(newElementName);
+		return fieldAttributeValue;
+	}
 
-    public PsiElement bindToElement(@NotNull PsiElement element) throws IncorrectOperationException {
-        throw new IncorrectOperationException();
-    }
+	public PsiElement bindToElement(@NotNull PsiElement element) throws IncorrectOperationException {
+		throw new IncorrectOperationException();
+	}
 
-    public boolean isReferenceTo(PsiElement element) {
-        return resolve() == element;
-    }
+	public boolean isReferenceTo(PsiElement element) {
+		return resolve() == element;
+	}
 
-    public Object[] getVariants() {
-        return methods;
-    }
+	public Object[] getVariants() {
+		return methods;
+	}
 
-    public boolean isSoft() {
-        return false;
-    }
+	public boolean isSoft() {
+		return false;
+	}
 }

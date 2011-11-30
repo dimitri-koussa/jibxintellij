@@ -17,86 +17,92 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 class FieldReference implements PsiReference {
-    private final PsiClass psiClass;
-    private final XmlAttribute fieldAttribute;
-    private final XmlAttributeValue fieldAttributeValue;
-    private final String[] fields;
+	private final PsiClass psiClass;
+	private final XmlAttribute fieldAttribute;
+	private final XmlAttributeValue fieldAttributeValue;
+	private final String[] fields;
 
-    public FieldReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
-        this.psiClass = psiClass;
-        this.fieldAttribute = fieldAttribute;
-        this.fieldAttributeValue = fieldAttribute.getValueElement();
-        fields = PropertyUtil.getReadableProperties(psiClass, true);
-    }
+	public FieldReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
+		this.psiClass = psiClass;
+		this.fieldAttribute = fieldAttribute;
+		this.fieldAttributeValue = fieldAttribute.getValueElement();
+		fields = PropertyUtil.getReadableProperties(psiClass, true);
+	}
 
-    public PsiElement getElement() {
-        return fieldAttributeValue;
-    }
+	public PsiElement getElement() {
+		return fieldAttributeValue;
+	}
 
-    public TextRange getRangeInElement() {
-        return new TextRange(1, getElement().getTextRange().getLength() - 1);
-    }
+	public TextRange getRangeInElement() {
+		return new TextRange(1, getElement().getTextRange().getLength() - 1);
+	}
 
-    @Nullable
-    public PsiElement resolve() {
-        String value = fieldAttributeValue.getValue();
-        PsiField field = findFieldByName(psiClass, value);
-        // if we didn't find the field, search for one whose name starts with the value typed
-        if (field == null) {
-            for (String property : fields) {
-                if (property.startsWith(value))
-                    field = findFieldByName(psiClass, property);
-            }
-        }
-        return field;
-    }
+	@Nullable
+	public PsiElement resolve() {
+		String value = fieldAttributeValue.getValue();
+		PsiField field = findFieldByName(psiClass, value);
+		// if we didn't find the field, search for one whose name starts with the value typed
+		if (field == null) {
+			for (String property : fields) {
+				if (property.startsWith(value)) {
+					field = findFieldByName(psiClass, property);
+				}
+			}
+		}
+		return field;
+	}
 
-    public String getCanonicalText() {
-        return fieldAttributeValue.getValue();
-    }
+	public String getCanonicalText() {
+		return fieldAttributeValue.getValue();
+	}
 
-    public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
-        fieldAttribute.setValue(PropertyUtil.getPropertyName(newElementName));
-        return fieldAttributeValue;
-    }
+	public PsiElement handleElementRename(String newElementName) throws IncorrectOperationException {
+		fieldAttribute.setValue(PropertyUtil.getPropertyName(newElementName));
+		return fieldAttributeValue;
+	}
 
-    public PsiElement bindToElement(@NotNull PsiElement element) throws IncorrectOperationException {
-        throw new IncorrectOperationException();
-    }
+	public PsiElement bindToElement(@NotNull PsiElement element) throws IncorrectOperationException {
+		throw new IncorrectOperationException();
+	}
 
-    public boolean isReferenceTo(PsiElement element) {
-        return resolve() == element;
-    }
+	public boolean isReferenceTo(PsiElement element) {
+		return resolve() == element;
+	}
 
-    public Object[] getVariants() {
-        return fields;
-    }
+	public Object[] getVariants() {
+		return fields;
+	}
 
-    public boolean isSoft() {
-        return false;
-    }
+	public boolean isSoft() {
+		return false;
+	}
 
-    private PsiField findFieldByName(PsiClass psiClass, String fieldName) {
-        PsiField field = psiClass.findFieldByName(fieldName, true);
-        if (field != null)
-            return field;
-        XmlTag tag = fieldAttribute.getParent();
-        if (tag == null || tag.getParentTag() == null)
-            return null;
-        String getMethod = tag.getParentTag().getAttributeValue("get-method");
-        if (getMethod == null)
-            return null;
-        PsiMethod[] methods = psiClass.findMethodsByName(getMethod, true);
-        if (methods.length < 1)
-            return null;
-        PsiType returnType = methods[0].getReturnType();
-        if (returnType instanceof PsiClassType) {
-            PsiClass clazz = ((PsiClassType) returnType).resolve();
-            if (clazz == null)
-                return null;
-            return findFieldByName(clazz, fieldName);
-        }
-        return null;
-    }
+	private PsiField findFieldByName(PsiClass psiClass, String fieldName) {
+		PsiField field = psiClass.findFieldByName(fieldName, true);
+		if (field != null) {
+			return field;
+		}
+		XmlTag tag = fieldAttribute.getParent();
+		if (tag == null || tag.getParentTag() == null) {
+			return null;
+		}
+		String getMethod = tag.getParentTag().getAttributeValue("get-method");
+		if (getMethod == null) {
+			return null;
+		}
+		PsiMethod[] methods = psiClass.findMethodsByName(getMethod, true);
+		if (methods.length < 1) {
+			return null;
+		}
+		PsiType returnType = methods[0].getReturnType();
+		if (returnType instanceof PsiClassType) {
+			PsiClass clazz = ((PsiClassType) returnType).resolve();
+			if (clazz == null) {
+				return null;
+			}
+			return findFieldByName(clazz, fieldName);
+		}
+		return null;
+	}
 
 }

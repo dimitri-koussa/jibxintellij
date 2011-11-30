@@ -14,24 +14,28 @@ import org.jibx.plugins.intellij.BindingCompilerModuleComponent;
 
 /**
  * Add a JiBX mapping to the list of mappings.
+ *
  * @author Jerome Bernard (jerome.bernard@kalixia.com)
  */
 public class AddMappingAction extends AnAction {
-    private Logger logger = Logger.getLogger(getClass());
+	private Logger logger = Logger.getLogger(getClass());
 
-    public void actionPerformed(AnActionEvent event) {
-        PsiFile psiBinding = (PsiFile) event.getDataContext().getData(DataConstants.PSI_FILE);
-        Module module = (Module) event.getDataContext().getData(DataConstants.MODULE);
-        if (psiBinding == null)
-            return;
-        VirtualFile binding = psiBinding.getVirtualFile();
-        if (binding == null)
-            return;
-        assert module != null;
-        BindingCompilerModuleComponent compiler = module.getComponent(BindingCompilerModuleComponent.class);
-        compiler.addBinding(binding);
+	public void actionPerformed(AnActionEvent event) {
+		PsiFile psiBinding = (PsiFile) event.getDataContext().getData(DataConstants.PSI_FILE);
+		Module module = (Module) event.getDataContext().getData(DataConstants.MODULE);
+		if (psiBinding == null) {
+			return;
+		}
+		VirtualFile binding = psiBinding.getVirtualFile();
+		if (binding == null) {
+			return;
+		}
+		assert module != null;
+		BindingCompilerModuleComponent compiler = module.getComponent(BindingCompilerModuleComponent.class);
+		compiler.addBinding(binding);
 
-        if (logger.isInfoEnabled())
-            logger.info(String.format("Added JiBX binding: %s", binding.getPath()));
-    }
+		if (logger.isInfoEnabled()) {
+			logger.info(String.format("Added JiBX binding: %s", binding.getPath()));
+		}
+	}
 }

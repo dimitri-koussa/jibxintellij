@@ -14,6 +14,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,60 +22,57 @@ import java.util.Set;
  * @author Jerome Bernard (jerome.bernard@kalixia.com)
  */
 public class BindingCompilerModuleComponent implements ModuleComponent, JDOMExternalizable {
-    private Module module;
-    private Set<VirtualFile> bindings = new HashSet<VirtualFile>();
-    private Logger logger = Logger.getLogger(getClass());
+	private Module module;
+	private Set<VirtualFile> bindings = new HashSet<VirtualFile>();
+	private Logger logger = Logger.getLogger(getClass());
 
-    public void addBinding(VirtualFile binding) {
-        bindings.add(binding);
-    }
+	public void addBinding(VirtualFile binding) {
+		bindings.add(binding);
+	}
 
-    public void removeBinding(VirtualFile binding) {
-        bindings.remove(binding);
-    }
+	public void removeBinding(VirtualFile binding) {
+		bindings.remove(binding);
+	}
 
-    public Set<VirtualFile> getBindings() {
-        return bindings;
-    }
+	public Set<VirtualFile> getBindings() {
+		return bindings;
+	}
 
-    public BindingCompilerModuleComponent(Module module) {
-        this.module = module;
-    }
+	public BindingCompilerModuleComponent(Module module) {
+		this.module = module;
+	}
 
-    public void projectOpened() {
-    }
+	public void projectOpened() { }
 
-    public void projectClosed() {
-    }
+	public void projectClosed() { }
 
-    public void moduleAdded() {
-        CompilerManager.getInstance(module.getProject()).addAfterTask(new BindingCompilerCompileTask(module));
-    }
+	public void moduleAdded() {
+		CompilerManager.getInstance(module.getProject()).addAfterTask(new BindingCompilerCompileTask(module));
+	}
 
-    @NotNull
-    public String getComponentName() {
-        return "JiBX binding compiler";
-    }
+	@NotNull
+	public String getComponentName() {
+		return "JiBX binding compiler";
+	}
 
-    public void initComponent() {
-    }
+	public void initComponent() { }
 
-    public void disposeComponent() {
-    }
+	public void disposeComponent() { }
 
-    public void readExternal(Element element) throws InvalidDataException {
-        logger.info("Reading settings...");
-        for (Object o : element.getChildren("mapping")) {
-            Element mapping = (Element) o;
-            bindings.add(LocalFileSystem.getInstance().findFileByPath(mapping.getValue()));
-            if (logger.isInfoEnabled())
-                logger.info(String.format("Added binding: %s", mapping.getValue()));
-        }
-    }
+	public void readExternal(Element element) throws InvalidDataException {
+		logger.info("Reading settings...");
+		for (Object o : element.getChildren("mapping")) {
+			Element mapping = (Element) o;
+			bindings.add(LocalFileSystem.getInstance().findFileByPath(mapping.getValue()));
+			if (logger.isInfoEnabled()) {
+				logger.info(String.format("Added binding: %s", mapping.getValue()));
+			}
+		}
+	}
 
-    public void writeExternal(Element element) throws WriteExternalException {
-        for (VirtualFile binding : bindings) {
-            element.addContent(new Element("mapping").addContent(binding.getPath()));
-        }
-    }
+	public void writeExternal(Element element) throws WriteExternalException {
+		for (VirtualFile binding : bindings) {
+			element.addContent(new Element("mapping").addContent(binding.getPath()));
+		}
+	}
 }

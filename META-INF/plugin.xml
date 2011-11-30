@@ -1,13 +1,14 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
 <idea-plugin>
-    <name>JiBX</name>
-    <description>Run JiBX binding compiler after the javac compiler has run and provides validation support.</description>
-    <version>2.0.5.0</version>
-    <vendor url="http://www.kalixia.com" email="jerome.bernard@kalixia.com">Kalixia, SARL.</vendor>
-    <idea-version since-build="107.587"/>
+	<name>JiBX</name>
+	<description>Run JiBX binding compiler after the javac compiler has run and provides validation support.
+	</description>
+	<version>2.0.5.0</version>
+	<vendor url="http://www.kalixia.com" email="jerome.bernard@kalixia.com">Kalixia, SARL.</vendor>
+	<idea-version since-build="107.587"/>
 
-    <change-notes>
-	<![CDATA[
+	<change-notes>
+		<![CDATA[
 	    <p>
 	        Usage:<br>
 	        Right-click on your JiBX mapping file and select "Use as JiBX mapping".
@@ -30,32 +31,32 @@
 	        - added integration between IDEA and the binding compiler errors.<br>
 	    </p>
     ]]>
-    </change-notes>
+	</change-notes>
 
-    <module-components>
-        <component>
-            <implementation-class>org.jibx.plugins.intellij.BindingCompilerModuleComponent</implementation-class>
-        </component>
-        <!--<component>-->
-            <!--<implementation-class>org.jibx.plugins.intellij.psi.JiBXReferencesToJavaCode</implementation-class>-->
-        <!--</component>-->
-    </module-components>
+	<module-components>
+		<component>
+			<implementation-class>org.jibx.plugins.intellij.BindingCompilerModuleComponent</implementation-class>
+		</component>
+		<!--<component>-->
+		<!--<implementation-class>org.jibx.plugins.intellij.psi.JiBXReferencesToJavaCode</implementation-class>-->
+		<!--</component>-->
+	</module-components>
 
 	<!--<extensions defaultExtensionNs="com.intellij">-->
-		<!--<annotator implementationClass="org.jibx.plugins.intellij.psi.JiBXAnnotator" language="XML" />-->
+	<!--<annotator implementationClass="org.jibx.plugins.intellij.psi.JiBXAnnotator" language="XML" />-->
 	<!--</extensions>-->
 
-    <actions>
-        <action class="org.jibx.plugins.intellij.actions.AddMappingAction"
-                text="Use as JiBX mapping"
-                id="jibx-use-as-mapping">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-        </action>
-        <action class="org.jibx.plugins.intellij.actions.DeleteMappingAction"
-                text="Don't use as JiBX mapping"
-                id="jibx-not-use-as-mapping">
-            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-        </action>
-    </actions>
+	<actions>
+		<action class="org.jibx.plugins.intellij.actions.AddMappingAction"
+				text="Use as JiBX mapping"
+				id="jibx-use-as-mapping">
+			<add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+		</action>
+		<action class="org.jibx.plugins.intellij.actions.DeleteMappingAction"
+				text="Don't use as JiBX mapping"
+				id="jibx-not-use-as-mapping">
+			<add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+		</action>
+	</actions>
 
 </idea-plugin>
