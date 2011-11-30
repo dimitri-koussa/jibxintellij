@@ -2,7 +2,7 @@
 <idea-plugin>
     <name>JiBX</name>
     <description>Run JiBX binding compiler after the javac compiler has run and provides validation support.</description>
-    <version>2.0.5</version>
+    <version>2.0.5.0</version>
     <vendor url="http://www.kalixia.com" email="jerome.bernard@kalixia.com">Kalixia, SARL.</vendor>
     <idea-version since-build="107.587"/>
 
@@ -36,13 +36,14 @@
         <component>
             <implementation-class>org.jibx.plugins.intellij.BindingCompilerModuleComponent</implementation-class>
         </component>
-        <component>
-            <implementation-class>org.jibx.plugins.intellij.psi.JiBXReferencesToJavaCode</implementation-class>
-        </component>
-        <component>
-            <implementation-class>org.jibx.plugins.intellij.BindingEditorComponent</implementation-class>
-        </component>
+        <!--<component>-->
+            <!--<implementation-class>org.jibx.plugins.intellij.psi.JiBXReferencesToJavaCode</implementation-class>-->
+        <!--</component>-->
     </module-components>
+
+	<!--<extensions defaultExtensionNs="com.intellij">-->
+		<!--<annotator implementationClass="org.jibx.plugins.intellij.psi.JiBXAnnotator" language="XML" />-->
+	<!--</extensions>-->
 
     <actions>
         <action class="org.jibx.plugins.intellij.actions.AddMappingAction"
