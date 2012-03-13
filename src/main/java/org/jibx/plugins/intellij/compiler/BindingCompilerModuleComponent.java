@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2005-2007, Kalixia, SARL. All Rights Reserved.
  */
-package org.jibx.plugins.intellij;
+package org.jibx.plugins.intellij.compiler;
 
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.module.Module;

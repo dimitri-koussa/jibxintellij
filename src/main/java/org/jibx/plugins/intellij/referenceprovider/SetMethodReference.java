@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.psi;
+package org.jibx.plugins.intellij.referenceprovider;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiClass;
@@ -13,20 +13,19 @@ import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
-class GetMethodReference implements PsiReference {
+class SetMethodReference implements PsiReference {
 	private final PsiClass psiClass;
 	private final XmlAttribute fieldAttribute;
 	private final XmlAttributeValue fieldAttributeValue;
 	private final PsiMethod[] methods;
 
-	public GetMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
+	public SetMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
 		this.psiClass = psiClass;
 		this.fieldAttribute = fieldAttribute;
 		this.fieldAttributeValue = fieldAttribute.getValueElement();
-		this.methods = findGetters(psiClass.getAllMethods());
+		this.methods = findSetters(psiClass.getAllMethods());
 	}
 
 	public PsiElement getElement() {
@@ -40,7 +39,7 @@ class GetMethodReference implements PsiReference {
 	@Nullable
 	public PsiElement resolve() {
 		String value = fieldAttributeValue.getValue();
-		PsiMethod[] completions = findGetters(psiClass.findMethodsByName(value, true));
+		PsiMethod[] completions = findSetters(psiClass.findMethodsByName(value, true));
 		PsiMethod method = null;
 		// if we didn't find the field, search for one whose name starts with the value typed
 		switch (completions.length) {
@@ -85,10 +84,10 @@ class GetMethodReference implements PsiReference {
 		return false;
 	}
 
-	private PsiMethod[] findGetters(PsiMethod[] methods) {
+	private PsiMethod[] findSetters(PsiMethod[] methods) {
 		List<PsiMethod> filtered = new ArrayList<PsiMethod>(methods.length);
 		for (PsiMethod allMethod : methods) {
-			if (PropertyUtil.isSimplePropertyGetter(allMethod)) {
+			if (PropertyUtil.isSimplePropertySetter(allMethod)) {
 				filtered.add(allMethod);
 			}
 		}

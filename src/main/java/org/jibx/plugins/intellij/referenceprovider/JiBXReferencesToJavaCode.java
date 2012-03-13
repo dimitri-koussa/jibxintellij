@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.psi;
+package org.jibx.plugins.intellij.referenceprovider;
 
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleComponent;

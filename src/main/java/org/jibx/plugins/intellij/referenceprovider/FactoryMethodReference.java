@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.psi;
+package org.jibx.plugins.intellij.referenceprovider;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiClass;

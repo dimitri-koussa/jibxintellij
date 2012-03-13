@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.psi;
+package org.jibx.plugins.intellij.referenceprovider;
 
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiClass;
@@ -15,17 +15,17 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-class SetMethodReference implements PsiReference {
+class GetMethodReference implements PsiReference {
 	private final PsiClass psiClass;
 	private final XmlAttribute fieldAttribute;
 	private final XmlAttributeValue fieldAttributeValue;
 	private final PsiMethod[] methods;
 
-	public SetMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
+	public GetMethodReference(final XmlAttribute fieldAttribute, final PsiClass psiClass) {
 		this.psiClass = psiClass;
 		this.fieldAttribute = fieldAttribute;
 		this.fieldAttributeValue = fieldAttribute.getValueElement();
-		this.methods = findSetters(psiClass.getAllMethods());
+		this.methods = findGetters(psiClass.getAllMethods());
 	}
 
 	public PsiElement getElement() {
@@ -39,7 +39,7 @@ class SetMethodReference implements PsiReference {
 	@Nullable
 	public PsiElement resolve() {
 		String value = fieldAttributeValue.getValue();
-		PsiMethod[] completions = findSetters(psiClass.findMethodsByName(value, true));
+		PsiMethod[] completions = findGetters(psiClass.findMethodsByName(value, true));
 		PsiMethod method = null;
 		// if we didn't find the field, search for one whose name starts with the value typed
 		switch (completions.length) {
@@ -84,10 +84,10 @@ class SetMethodReference implements PsiReference {
 		return false;
 	}
 
-	private PsiMethod[] findSetters(PsiMethod[] methods) {
+	private PsiMethod[] findGetters(PsiMethod[] methods) {
 		List<PsiMethod> filtered = new ArrayList<PsiMethod>(methods.length);
 		for (PsiMethod allMethod : methods) {
-			if (PropertyUtil.isSimplePropertySetter(allMethod)) {
+			if (PropertyUtil.isSimplePropertyGetter(allMethod)) {
 				filtered.add(allMethod);
 			}
 		}
