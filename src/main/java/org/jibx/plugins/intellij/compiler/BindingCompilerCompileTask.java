@@ -1,6 +1,3 @@
-/*
- * Copyright (c) 2005-2007, Kalixia, SARL. All Rights Reserved.
- */
 package org.jibx.plugins.intellij.compiler;
 
 import com.intellij.openapi.application.ApplicationManager;
@@ -29,11 +26,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-/**
- * Run the binding compiler after the javac compiler.
- *
- * @author Jerome Bernard (jerome.bernard@kalixia.com)
- */
 public class BindingCompilerCompileTask implements CompileTask {
 	private Module module;
 	private Logger logger = Logger.getLogger(getClass());
@@ -42,9 +34,11 @@ public class BindingCompilerCompileTask implements CompileTask {
 		this.module = module;
 	}
 
-	public boolean execute(final CompileContext compileContext) {
+	@Override
+    public boolean execute(final CompileContext compileContext) {
 		final String[] projectPaths = ApplicationManager.getApplication().runReadAction(new Computable<String[]>() {
-			public String[] compute() {
+			@Override
+            public String[] compute() {
 				String[] paths;
 				ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
 				VirtualFile[] projectClasspath = rootManager.getFiles(OrderRootType.COMPILATION_CLASSES);
@@ -57,7 +51,8 @@ public class BindingCompilerCompileTask implements CompileTask {
 			}
 		});
 		final String output = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
-			public String compute() {
+			@Override
+            public String compute() {
 				try {
 					return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
 				} catch (MalformedURLException e) {
@@ -68,7 +63,8 @@ public class BindingCompilerCompileTask implements CompileTask {
 			}
 		});
 		final String testOutput = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
-			public String compute() {
+			@Override
+            public String compute() {
 				try {
 					return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
 				} catch (MalformedURLException e) {
@@ -87,7 +83,8 @@ public class BindingCompilerCompileTask implements CompileTask {
 
 		String result = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
 			// return null if there is a problem compiling the bindings
-			public String compute() {
+			@Override
+            public String compute() {
 				ValidationContext vctx = null;
 				// retreive the bindings
 				final Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();

@@ -1,35 +1,30 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
 <idea-plugin>
-	<name>JiBX</name>
-	<description>Run JiBX binding compiler after the javac compiler has run and provides validation support.
+	<name>
+        JiBX binder
+    </name>
+	<description>
+        Runs JiBX binding compiler after the javac compiler has run.
+
+        Most of the hard work was done by Jerome Bernard (jerome.bernard@kalixia.com)
+        <![CDATA[
+        <p>
+            Automatically figures out what files are JiBX files by using a naive regex: <code>^.*/src/main/.*jibx/.*\.xml$</code>
+            <br>
+            Then runs the JiBX binding compiler after a compile.
+        </p>
+    ]]>
 	</description>
-	<version>2.0.5.0</version>
-	<vendor url="http://www.kalixia.com" email="jerome.bernard@kalixia.com">Kalixia, SARL.</vendor>
+	<version>1.0-SNAPSHOT</version>
+	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
 	<idea-version since-build="107.587"/>
-
 	<change-notes>
-		<![CDATA[
-	    <p>
-	        Usage:<br>
-	        Right-click on your JiBX mapping file and select "Use as JiBX mapping".
-	        <br>
-	        <br>
-            Changes:<br>
-            2.0.5
-            - [NEW] Support for IDEA 10.5
-
-            2.0.4 and older
-            - Support for Diana (EAP) releases.
-            - Updated in order to embed JiBX version 1.1.6a
-            - added support for navigation with <em>factory</em> attributes
-            - now dealing with navigation between XML and Java code and handling refactoring
-            - fixed classpath issues<br>
-            - significantly improved error reporting<br>
-            - updated to JiBX 1.1.5<br>
-            - instrumentation of test classes [NEW]<br>	        
-	        - fixed compilation failure if no bindings were selected.<br>
-	        - added integration between IDEA and the binding compiler errors.<br>
-	    </p>
+        <![CDATA[
+        <pre>
+            1.0
+            - Added auto detection of JiBX files based of a naive regex
+            - JiBX compiler is run after compile
+        </pre>
     ]]>
 	</change-notes>
 
@@ -37,26 +32,5 @@
 		<component>
 			<implementation-class>org.jibx.plugins.intellij.compiler.BindingCompilerModuleComponent</implementation-class>
 		</component>
-		<!--<component>-->
-		<!--<implementation-class>org.jibx.plugins.intellij.psi.JiBXReferencesToJavaCode</implementation-class>-->
-		<!--</component>-->
 	</module-components>
-
-	<!--<extensions defaultExtensionNs="com.intellij">-->
-	<!--<annotator implementationClass="org.jibx.plugins.intellij.annotator.JiBXAnnotator" language="XML" />-->
-	<!--</extensions>-->
-
-	<actions>
-		<action class="org.jibx.plugins.intellij.compiler.AddMappingAction"
-				text="Use as JiBX mapping"
-				id="jibx-use-as-mapping">
-			<add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-		</action>
-		<action class="org.jibx.plugins.intellij.compiler.DeleteMappingAction"
-				text="Don't use as JiBX mapping"
-				id="jibx-not-use-as-mapping">
-			<add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-		</action>
-	</actions>
-
 </idea-plugin>

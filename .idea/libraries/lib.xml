@@ -13,6 +13,8 @@
       <root url="jar://$PROJECT_DIR$/lib/xpp3.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../jibx_1_1_6a/jibx_1_1_6a.zip!/jibx/build/src" />
+    </SOURCES>
   </library>
 </component>
