@@ -1,7 +1,0 @@
-* Implement completion on class fields in jibx mapping file
-* Update to use the latest version of jibx
-* Add a java code references to the JiBX bindings files
-* Improve detection of JiBX files
-* Add config that lists all the files and allows some to be deselected
-* Implement feature that will re-run the jibx files autodetection [work started by jerome]
-* Implement annotator that will annotate the jibx file and provide file validation (classes, methods, etc) [work started by jerome]

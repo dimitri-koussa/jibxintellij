@@ -6,26 +6,37 @@
 	<description>
         Runs JiBX binding compiler after the javac compiler has run.
 
-        Most of the hard work was done by Jerome Bernard (jerome.bernard@kalixia.com)
+        All the hard work was done by Jerome Bernard (jerome.bernard@kalixia.com)
         <![CDATA[
         <p>
-            Automatically figures out what files are JiBX files by using a naive regex: <code>^.*/src/main/.*jibx/.*\.xml$</code>
+            Automatically figures out what files are JiBX files by using a regex: <code>^.*/src/main/.*jibx.*/.*\.xml$</code>
             <br>
             Then runs the JiBX binding compiler after a compile.
         </p>
+        <p>
+            TODO
+            * Implement completion on class fields in JiBX mapping file
+            * Update to use the latest version of JiBX
+            * Add a java code references to the JiBX bindings files
+            * Improve detection of JiBX files
+            * Add config that lists all the files and allows some to be deselected
+            * Implement feature that will re-run the JiBX files auto detection [work done by jerome]
+            * Implement annotator that will annotate the JiBX file and provide file validation (classes, methods, etc) [work done by jerome]
+            * If it is a maven project that has the maven JiBX plugin installed then determine files by inspecting the pom
+        </p>
     ]]>
 	</description>
-	<version>1.0-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT (21/03/12 8:33 PM)</version>
 	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
 	<idea-version since-build="107.587"/>
 	<change-notes>
-        <![CDATA[
-        <pre>
-            1.0
-            - Added auto detection of JiBX files based of a naive regex
-            - JiBX compiler is run after compile
-        </pre>
-    ]]>
+<![CDATA[
+<pre>datetime
+1.0-SNAPSHOT (21/03/12 8:32 PM)
+- Added auto detection of JiBX files based of a simple regex
+- JiBX compiler is run after compile
+</pre>
+]]>
 	</change-notes>
 
 	<module-components>
