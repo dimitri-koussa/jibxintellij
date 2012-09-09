@@ -18,7 +18,6 @@ import org.jibx.binding.classes.ClassFile;
 import org.jibx.binding.model.BindingElement;
 import org.jibx.binding.model.ValidationContext;
 import org.jibx.binding.model.ValidationProblem;
-import org.jibx.plugins.intellij.compiler.BindingCompilerModuleComponent;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.JiBXException;
 
@@ -41,7 +40,7 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     @Override
     public boolean execute(final CompileContext compileContext) {
-        logger.info("Executing BindingCompilerCompileTask...");
+        logger.info("Executing BindingCompilerCompileTask.execute()...");
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
         String testOutput = ApplicationManager.getApplication().runReadAction(new TargetPathFinder(compileContext));
@@ -64,20 +63,20 @@ public class BindingCompilerCompileTask implements CompileTask {
             this.testOutput = testOutput;
         }
 
-        // return null if there is a problem compiling the bindings
         @Override
         public String compute() {
+            logger.info("Executing BindingCompilerCompileTask.compute()...");
             ValidationContext vctx = null;
-            // retrieve the bindings
             Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();
 
             try {
                 compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Compiling JiBX bindings...", null, 0, 0);
 
-                // check if at least one binding can be found
                 if (bindings.size() == 0) {
+                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "No JiBX bindings found, nothing to do.", null, 0, 0);
                     return Boolean.TRUE.toString();
                 }
+                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Number of JiBX bindings found: " + bindings.size(), null, 0, 0);
 
                 List<String> paths = new ArrayList<String>();
                 paths.addAll(Arrays.asList(output, PathUtil.getJarPathForClass(Compile.class), PathUtil.getJarPathForClass(BindingDirectory.class)));
@@ -87,7 +86,7 @@ public class BindingCompilerCompileTask implements CompileTask {
                 paths.addAll(Arrays.asList(projectPaths));
 
                 String[] bindingsPaths = findBindings(bindings);
-                vctx = validateBindings(vctx, bindings, paths);
+                vctx = validateBindings(bindings, paths);
 
                 runJiBXCompiler(paths, bindingsPaths);
                 compileContext.addMessage(CompilerMessageCategory.INFORMATION, "JiBX binding compilation successful", null, 0, 0);
@@ -103,16 +102,16 @@ public class BindingCompilerCompileTask implements CompileTask {
             }
         }
 
-        private ValidationContext validateBindings(ValidationContext vctx, Set<VirtualFile> bindings, List<String> paths) throws IOException {
+        private ValidationContext validateBindings(Set<VirtualFile> bindings, List<String> paths) throws IOException {
             ClassCache.setPaths(paths.toArray(new String[paths.size()]));
             ClassFile.setPaths(paths.toArray(new String[paths.size()]));
-            vctx = BindingElement.newValidationContext();
-            int i = 0;
-            for (Iterator vfIterator = bindings.iterator(); vfIterator.hasNext(); i++) {
+            ValidationContext vctx = BindingElement.newValidationContext();
+
+            Iterator vfIterator = bindings.iterator();
+            while (vfIterator.hasNext()) {
                 VirtualFile binding = (VirtualFile) vfIterator.next();
                 String bindingPath = binding.getPath();
                 logger.info(String.format("Using binding: %s", bindingPath));
-                // validate the binding definition
                 try {
                     BindingElement.validateBinding(binding.getPath(), new URL(binding.getUrl()), new ByteArrayInputStream(getStreamData(new FileInputStream(bindingPath))), vctx);
                 } catch (JiBXException e) {
@@ -216,10 +215,9 @@ public class BindingCompilerCompileTask implements CompileTask {
     private class ProjectPathsFinder implements Computable<String[]> {
         @Override
         public String[] compute() {
-            String[] paths;
             ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
             VirtualFile[] projectClasspath = rootManager.getFiles(OrderRootType.COMPILATION_CLASSES);
-            paths = new String[projectClasspath.length];
+            String[] paths = new String[projectClasspath.length];
             for (int i = 0; i < projectClasspath.length; i++) {
                 VirtualFile virtualFile = projectClasspath[i];
                 String path = virtualFile.getPath();
