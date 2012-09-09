@@ -71,7 +71,7 @@ public class BindingCompilerCompileTask implements CompileTask {
             Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();
 
             try {
-                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Compiling JiBX binding...", null, 0, 0);
+                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Compiling JiBX bindings...", null, 0, 0);
 
                 // check if at least one binding can be found
                 if (bindings.size() == 0) {
@@ -133,7 +133,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         return bindingsPaths;
     }
 
-    private void runJiBXCompiler(List<String> paths, String[] bindingsPaths) throws JiBXException {// run the binding compiler
+    private void runJiBXCompiler(List<String> paths, String[] bindingsPaths) throws JiBXException {
         Compile compiler = new Compile();
         compiler.setLoad(false);
         compiler.setVerbose(true);
@@ -187,7 +187,7 @@ public class BindingCompilerCompileTask implements CompileTask {
                 return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
             } catch (MalformedURLException e) {
                 compileContext.addMessage(CompilerMessageCategory.ERROR, "Can't find test output directory", null, 0, 0);
-                logger.error("Cant' find test output directory", e);
+                logger.error("Can't find test output directory", e);
             }
             return null;
         }
@@ -206,7 +206,7 @@ public class BindingCompilerCompileTask implements CompileTask {
                 return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
             } catch (MalformedURLException e) {
                 compileContext.addMessage(CompilerMessageCategory.ERROR, "Can't find output directory", null, 0, 0);
-                logger.error("Cant' find output directory", e);
+                logger.error("Can't find output directory", e);
             }
             return null;
         }

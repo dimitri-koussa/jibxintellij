@@ -35,7 +35,7 @@ public class BindingCompilerModuleComponent implements ModuleComponent {
 
     @Override
     public void initComponent() {
-        logger.info("Registering JibxBinder task to run after project is finished...");
+        logger.info("Registering JibxBinder task to run after project has finished loading...");
         StartupManager.getInstance(module.getProject()).runWhenProjectIsInitialized(new Runnable() {
             @Override
             public void run() {
