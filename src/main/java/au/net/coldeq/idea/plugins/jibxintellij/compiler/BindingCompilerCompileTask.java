@@ -40,7 +40,7 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     @Override
     public boolean execute(final CompileContext compileContext) {
-        logger.info("Executing BindingCompilerCompileTask.execute()...");
+        logger.info("Executing BindingCompilerCompileTask.execute(): " + module.getName());
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
         String testOutput = ApplicationManager.getApplication().runReadAction(new TargetPathFinder(compileContext));
@@ -65,7 +65,7 @@ public class BindingCompilerCompileTask implements CompileTask {
 
         @Override
         public String compute() {
-            logger.info("Executing BindingCompilerCompileTask.compute()...");
+            logger.info("Executing BindingCompilerCompileTask.compute(): " + module.getName());
             ValidationContext vctx = null;
             Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();
 
@@ -128,7 +128,6 @@ public class BindingCompilerCompileTask implements CompileTask {
         for (Iterator vfIterator = bindings.iterator(); vfIterator.hasNext(); i++) {
             VirtualFile binding = (VirtualFile) vfIterator.next();
             bindingsPaths[i] = binding.getPath();
-            logger.info(String.format("Using binding: %s", bindingsPaths[i]));
         }
         return bindingsPaths;
     }

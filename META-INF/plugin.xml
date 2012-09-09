@@ -4,27 +4,40 @@
         JiBX binder
     </name>
 	<description>
-        Runs JiBX binding compiler after the javac compiler has run.
-
-        All the hard work was originally done by Jerome Bernard (jerome.bernard@kalixia.com)
         <![CDATA[
-        <p>
-            Automatically figures out what files are JiBX files by using a regex: <code>^.*/src/main/.*jibx.*/.*\.xml$</code>
-            <br>
-            Then runs the JiBX binding compiler after a compile.
-        </p>
-        <p>
-            TODO
-            * Implement completion on class fields in JiBX mapping file
-            * Implement navigation from JiBX mapping file to class/fields.
-            * Update to use the latest version of JiBX
-            * Add java code references to the JiBX bindings files (i.e., when searching for usages of a field IDEA will show it as being used by JiBX)
-            * Improve detection of JiBX files
-            * Add config that lists all the files and allows some to be deselected
-            * Implement feature that will re-run the JiBX files auto detection [work done by jerome]
-            * Implement annotator that will annotate the JiBX file and provide file validation (classes, methods, etc) [work done by jerome]
-            * If it is a maven project that has the maven JiBX plugin installed then determine files by inspecting the pom
-        </p>
+<pre>
+Runs JiBX binding compiler after the
+javac compiler has run.
+
+All the hard work was originally done
+by Jerome Bernard (jerome.bernard@kalixia.com)
+
+Runs the JiBX binding compiler after a compile.
+Automatically figures out what files are
+JiBX files by using the following regex:
+^.*/src/main/.*jibx.*/.*\.xml$
+
+TODO
+* Implement completion on class fields
+  in JiBX mapping file
+* Implement navigation from JiBX mapping
+  file to class/fields.
+* Update to use the latest version of JiBX
+* Add java code references to the JiBX bindings
+  files (i.e., when searching for usages of a
+  field IDEA will show it as being used by JiBX)
+* Improve detection of JiBX files
+* Add config that lists all the files and allows
+  some to be deselected
+* Implement feature that will re-run the JiBX files
+  auto detection [work done by jerome]
+* Implement annotator that will annotate the
+  JiBX file and provide file validation
+  (classes, methods, etc) [work done by jerome]
+* If it is a maven project that has the
+  maven JiBX plugin installed then determine files
+  by inspecting the pom
+</pre>
     ]]>
 	</description>
 	<version>1.0-SNAPSHOT (21/03/12 8:33 PM)</version>
@@ -32,9 +45,10 @@
 	<idea-version since-build="107.587"/>
 	<change-notes>
 <![CDATA[
-<pre>datetime
+<pre>
 1.0-SNAPSHOT (21/03/12 8:32 PM)
-- Added auto detection of JiBX files based of a simple regex
+- Added auto detection of JiBX files based
+  of a simple regex
 - JiBX compiler is run after every compile
 </pre>
 ]]>
