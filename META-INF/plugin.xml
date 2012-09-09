@@ -42,7 +42,7 @@
 
 	<module-components>
 		<component>
-			<implementation-class>org.jibx.plugins.intellij.compiler.BindingCompilerModuleComponent</implementation-class>
+			<implementation-class>au.net.coldeq.idea.plugins.jibxintellij.compiler.BindingCompilerModuleComponent</implementation-class>
 		</component>
 	</module-components>
 </idea-plugin>

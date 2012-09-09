@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.compiler;
+package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.CompileContext;
@@ -18,6 +18,7 @@ import org.jibx.binding.classes.ClassFile;
 import org.jibx.binding.model.BindingElement;
 import org.jibx.binding.model.ValidationContext;
 import org.jibx.binding.model.ValidationProblem;
+import org.jibx.plugins.intellij.compiler.BindingCompilerModuleComponent;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.JiBXException;
 

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" line="88" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerCompileTask.java" line="89" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69cc6cc-482c-42bc-b3fc-d1b43ccdf390" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" afterPath="$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerCompileTask.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" afterPath="$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerModuleComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
     </list>
     <list id="0a3f7660-cedb-4c87-bbf4-7673a498079a" name="Idea files" comment="" />
@@ -69,9 +72,9 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="BindingCompilerCompileTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerCompileTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="5" selection-start="2222" selection-end="2222" vertical-scroll-proportion="0.0">
+            <state line="0" column="56" selection-start="8" selection-end="56" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -79,10 +82,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BindingCompilerModuleComponent.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="88" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0">
+            <state line="2" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BindingCompilerModuleComponent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerModuleComponent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="56" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -91,7 +103,7 @@
       <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="35" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.3881119">
+            <state line="44" column="113" selection-start="2012" selection-end="2012" vertical-scroll-proportion="0.6940063">
               <folding />
             </state>
           </provider>
@@ -128,8 +140,8 @@
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/facet/JibxFacetConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/facet/JibxFacet.java" />
         <option value="$PROJECT_DIR$/TODO" />
-        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" />
         <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
       </list>
     </option>
@@ -562,20 +574,20 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32783505" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32920963" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4067086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983926" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290008" sideWeight="0.5541579" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981315" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1862316" sideWeight="0.672165" order="0" side_tool="false" content_ui="combo" x="389" y="85" width="410" height="1454" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4067086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1862316" sideWeight="0.6707904" order="0" side_tool="false" content_ui="combo" x="389" y="85" width="410" height="1454" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277311" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="124" width="988" height="1376" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983926" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -680,30 +692,32 @@
         <state line="21" column="27" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerCompileTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="88" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.02097902">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="5" selection-start="2222" selection-end="2222" vertical-scroll-proportion="0.0">
+        <state line="0" column="56" selection-start="8" selection-end="56" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/au/net/coldeq/idea/plugins/jibxintellij/compiler/BindingCompilerModuleComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="56" selection-start="56" selection-end="56" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="35" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.3881119">
+        <state line="44" column="113" selection-start="2012" selection-end="2012" vertical-scroll-proportion="0.6940063">
           <folding />
         </state>
       </provider>

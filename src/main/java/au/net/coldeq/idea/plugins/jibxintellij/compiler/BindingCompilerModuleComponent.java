@@ -1,4 +1,4 @@
-package org.jibx.plugins.intellij.compiler;
+package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.diagnostic.Logger;
