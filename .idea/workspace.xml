@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69cc6cc-482c-42bc-b3fc-d1b43ccdf390" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" afterPath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" afterPath="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/META-INF/plugin.xml" afterPath="$PROJECT_DIR$/META-INF/plugin.xml" />
     </list>
     <list id="0a3f7660-cedb-4c87-bbf4-7673a498079a" name="Idea files" comment="" />
     <ignored path="jibxintellij.iws" />
@@ -71,10 +68,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BindingCompilerCompileTask.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BindingCompilerCompileTask.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="28" selection-start="4287" selection-end="4287" vertical-scroll-proportion="0.2027972">
+            <state line="50" column="5" selection-start="2222" selection-end="2222" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -91,10 +88,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="99" selection-start="1814" selection-end="1823" vertical-scroll-proportion="0.0">
+            <state line="37" column="35" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.3881119">
               <folding />
             </state>
           </provider>
@@ -131,9 +128,9 @@
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/facet/JibxFacetConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/facet/JibxFacet.java" />
         <option value="$PROJECT_DIR$/TODO" />
-        <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerModuleComponent.java" />
         <option value="$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java" />
+        <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
       </list>
     </option>
   </component>
@@ -523,6 +520,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
     <configuration useDefault="false">$USER_HOME$/.subversion_IDEA</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
@@ -559,15 +557,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="24" width="2562" height="1577" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32914045" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32783505" sideWeight="0.0" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983926" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="true" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290008" sideWeight="0.5541579" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32981315" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1862316" sideWeight="0.6722689" order="0" side_tool="false" content_ui="combo" x="389" y="85" width="410" height="1454" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1862316" sideWeight="0.672165" order="0" side_tool="false" content_ui="combo" x="389" y="85" width="410" height="1454" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4067086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -687,17 +685,26 @@
         <state line="65" column="88" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="99" selection-start="1814" selection-end="1823" vertical-scroll-proportion="0.0" />
+        <state line="2" column="0" selection-start="21" selection-end="21" vertical-scroll-proportion="0.02097902">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/jibx/plugins/intellij/compiler/BindingCompilerCompileTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="28" selection-start="4287" selection-end="4287" vertical-scroll-proportion="0.2027972">
+        <state line="50" column="5" selection-start="2222" selection-end="2222" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="35" selection-start="1836" selection-end="1836" vertical-scroll-proportion="0.3881119">
+          <folding />
         </state>
       </provider>
     </entry>
