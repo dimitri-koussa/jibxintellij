@@ -1,7 +1,7 @@
 <!DOCTYPE idea-plugin PUBLIC "Plugin/DTD" "http://plugins.intellij.net/plugin.dtd">
 <idea-plugin>
 	<name>
-        JiBX binder
+        Cold JiBX binder
     </name>
 	<description>
         <![CDATA[
@@ -10,7 +10,10 @@ Runs JiBX binding compiler after the
 javac compiler has run.
 
 All the hard work was originally done
-by Jerome Bernard (jerome.bernard@kalixia.com)
+by Jerome Bernard (jerome.bernard@kalixia.com).
+
+This is just a fork that gets the plugin working with newer versions
+of Intellij IDEA.
 
 Runs the JiBX binding compiler after a compile.
 Automatically figures out what files are
@@ -40,16 +43,17 @@ TODO
 </pre>
     ]]>
 	</description>
-	<version>1.0-SNAPSHOT (21/03/12 8:33 PM)</version>
+	<version>1.0</version>
 	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
-	<idea-version since-build="107.587"/>
+	<idea-version since-build="129.451"/>
 	<change-notes>
 <![CDATA[
 <pre>
-1.0-SNAPSHOT (21/03/12 8:32 PM)
+1.0 (2013-06-02)
 - Added auto detection of JiBX files based
   of a simple regex
-- JiBX compiler is run after every compile
+- JiBX compiler is run over *all* known bindings if any of the classes that were just compiled
+  by idea had a <mapping class="fqn of class"> decleration in a jibx file.
 </pre>
 ]]>
 	</change-notes>

@@ -1,5 +1,7 @@
 package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 
+import com.intellij.codeInsight.dataflow.SetUtil;
+import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileTask;
@@ -21,6 +23,9 @@ import org.jibx.binding.model.ValidationProblem;
 import org.jibx.runtime.BindingDirectory;
 import org.jibx.runtime.JiBXException;
 
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -78,6 +83,29 @@ public class BindingCompilerCompileTask implements CompileTask {
                 }
                 compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Number of JiBX bindings found: " + bindings.size(), null, 0, 0);
 
+                Set<String> namesOfClassesFilesThatAreGoingToBeCompiled = convertFilesToClassNames(this.compileContext.getCompileScope().getFiles(JavaFileType.INSTANCE, true));
+                Set<String> namesOfClassesThatAreJibxBound = null;
+                try {
+                    namesOfClassesThatAreJibxBound = figureOutWhichClassesAreJibxBound(bindings);
+                } catch (IOException e) {
+                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unable to read file for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
+                    return Boolean.FALSE.toString();
+                } catch (XMLStreamException e) {
+                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unable to parse xml for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
+                    return Boolean.FALSE.toString();
+                } catch (UnexpectedJibxMappingFileXml e) {
+                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unexpected xml contents for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
+                    return Boolean.FALSE.toString();
+                }
+
+                Set<String> jibxBoundClassesThatHaveBeenCompiled = SetUtil.intersect(namesOfClassesFilesThatAreGoingToBeCompiled, namesOfClassesThatAreJibxBound);
+                if (jibxBoundClassesThatHaveBeenCompiled.isEmpty()) {
+                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "No need to re-run any jibx bindings", bindings.toString(), 0, 0);
+                    return Boolean.TRUE.toString();
+                } else {
+                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "jibx bound classes have been compiled: " + Arrays.toString(jibxBoundClassesThatHaveBeenCompiled.toArray()), null, 0, 0);
+                }
+
                 List<String> paths = new ArrayList<String>();
                 paths.addAll(Arrays.asList(output, PathUtil.getJarPathForClass(Compile.class), PathUtil.getJarPathForClass(BindingDirectory.class)));
                 if (testOutput != null) {
@@ -100,6 +128,35 @@ public class BindingCompilerCompileTask implements CompileTask {
                 compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unexpected global exception: %s", t), null, 0, 0);
                 return Boolean.FALSE.toString();
             }
+        }
+
+        private Set<String> figureOutWhichClassesAreJibxBound(Set<VirtualFile> bindings) throws IOException, XMLStreamException, UnexpectedJibxMappingFileXml {
+            Set<String> results = new HashSet<String>();
+            for (VirtualFile binding : bindings) {
+                results.add(figureOutWhichClassIsJibxBound(binding));
+            }
+            return results;
+        }
+
+        private String figureOutWhichClassIsJibxBound(VirtualFile binding) throws IOException, XMLStreamException, UnexpectedJibxMappingFileXml {
+            XMLInputFactory xmlInFact = XMLInputFactory.newInstance();
+            XMLStreamReader reader = xmlInFact.createXMLStreamReader(binding.getInputStream());
+            while (reader.hasNext()) {
+                reader.next();
+                if (reader.isStartElement() && reader.hasName() && "mapping".equals(reader.getName().getLocalPart())) {
+                    return reader.getAttributeValue(null, "class");
+                }
+            }
+            throw new UnexpectedJibxMappingFileXml("Unable to find 'mapping' element in file: " + binding.getName());
+        }
+
+        private Set<String> convertFilesToClassNames(VirtualFile[] files) {
+            Set<String> results = new HashSet<String>();
+            for (VirtualFile file : files) {
+                String className = file.getCanonicalPath().split("src/main/java/")[1].replaceAll("/", ".").replaceAll("\\.java", "");
+                results.add(className);
+            }
+            return results;
         }
 
         private ValidationContext validateBindings(Set<VirtualFile> bindings, List<String> paths) throws IOException {
@@ -215,7 +272,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         @Override
         public String[] compute() {
             ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
-            VirtualFile[] projectClasspath = rootManager.getFiles(OrderRootType.COMPILATION_CLASSES);
+            VirtualFile[] projectClasspath = rootManager.getRootPaths(OrderRootType.CLASSES);
             String[] paths = new String[projectClasspath.length];
             for (int i = 0; i < projectClasspath.length; i++) {
                 VirtualFile virtualFile = projectClasspath[i];
@@ -237,5 +294,11 @@ public class BindingCompilerCompileTask implements CompileTask {
             os.write(buff, 0, count);
         }
         return os.toByteArray();
+    }
+
+    private static class UnexpectedJibxMappingFileXml extends Exception {
+        public UnexpectedJibxMappingFileXml(String message) {
+            super(message);
+        }
     }
 }

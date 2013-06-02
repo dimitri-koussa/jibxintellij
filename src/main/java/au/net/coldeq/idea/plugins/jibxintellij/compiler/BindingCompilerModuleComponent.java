@@ -45,7 +45,7 @@ public class BindingCompilerModuleComponent implements ModuleComponent {
                     @Override
                     public boolean processFile(VirtualFile fileOrDir) {
                         if (fileOrDir.getPath().matches("^.*/src/main/.*jibx.*/.*\\.xml$")) {
-                            logger.info("JibxBinder +" + fileOrDir.getPath());
+                            logger.info("JibxBinder: +" + fileOrDir.getPath());
                             bindings.add(fileOrDir);
                         }
                         return true;
