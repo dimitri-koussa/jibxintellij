@@ -48,6 +48,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         logger.info("Executing BindingCompilerCompileTask.execute(): " + module.getName());
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
+        String[] libraries = ApplicationManager.getApplication().runReadAction(new LibraryPathsFinder(compileContext));
         String testOutput = ApplicationManager.getApplication().runReadAction(new TargetPathFinder(compileContext));
         String result = ApplicationManager.getApplication().runReadAction(new BindingCompilerComputation(compileContext, projectPaths, output, testOutput));
 
@@ -93,9 +94,6 @@ public class BindingCompilerCompileTask implements CompileTask {
                 } catch (XMLStreamException e) {
                     compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unable to parse xml for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
                     return Boolean.FALSE.toString();
-                } catch (UnexpectedJibxMappingFileXml e) {
-                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unexpected xml contents for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
-                    return Boolean.FALSE.toString();
                 }
 
                 Set<String> jibxBoundClassesThatHaveBeenCompiled = SetUtil.intersect(namesOfClassesFilesThatAreGoingToBeCompiled, namesOfClassesThatAreJibxBound);
@@ -130,15 +128,18 @@ public class BindingCompilerCompileTask implements CompileTask {
             }
         }
 
-        private Set<String> figureOutWhichClassesAreJibxBound(Set<VirtualFile> bindings) throws IOException, XMLStreamException, UnexpectedJibxMappingFileXml {
+        private Set<String> figureOutWhichClassesAreJibxBound(Set<VirtualFile> bindings) throws IOException, XMLStreamException {
             Set<String> results = new HashSet<String>();
             for (VirtualFile binding : bindings) {
-                results.add(figureOutWhichClassIsJibxBound(binding));
+                String classFoundInBindingXml = figureOutWhichClassIsJibxBound(binding);
+                if (classFoundInBindingXml != null) {
+                    results.add(classFoundInBindingXml);
+                }
             }
             return results;
         }
 
-        private String figureOutWhichClassIsJibxBound(VirtualFile binding) throws IOException, XMLStreamException, UnexpectedJibxMappingFileXml {
+        private String figureOutWhichClassIsJibxBound(VirtualFile binding) throws IOException, XMLStreamException {
             XMLInputFactory xmlInFact = XMLInputFactory.newInstance();
             XMLStreamReader reader = xmlInFact.createXMLStreamReader(binding.getInputStream());
             while (reader.hasNext()) {
@@ -147,14 +148,17 @@ public class BindingCompilerCompileTask implements CompileTask {
                     return reader.getAttributeValue(null, "class");
                 }
             }
-            throw new UnexpectedJibxMappingFileXml("Unable to find 'mapping' element in file: " + binding.getName());
+            return null;
         }
 
         private Set<String> convertFilesToClassNames(VirtualFile[] files) {
             Set<String> results = new HashSet<String>();
             for (VirtualFile file : files) {
-                String className = file.getCanonicalPath().split("src/main/java/")[1].replaceAll("/", ".").replaceAll("\\.java", "");
-                results.add(className);
+                String canonicalPath = file.getCanonicalPath();
+                if (canonicalPath.matches(".*src/[^/]*/java/.*")) {
+                    String className = canonicalPath.split("src/[^/]*/java/")[1].replaceAll("/", ".").replaceAll("\\.java", "");
+                    results.add(className);
+                }
             }
             return results;
         }
@@ -268,6 +272,24 @@ public class BindingCompilerCompileTask implements CompileTask {
         }
     }
 
+    private class LibraryPathsFinder implements Computable<String[]> {
+        @Override
+        public String[] compute() {
+            ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
+            VirtualFile[] projectClasspath = rootManager.getRootPaths(OrderRootType.CLASSES);
+            String[] paths = new String[projectClasspath.length];
+            for (int i = 0; i < projectClasspath.length; i++) {
+                VirtualFile virtualFile = projectClasspath[i];
+                String path = virtualFile.getPath();
+                if (path.endsWith("!/")) {
+                    path = path.substring(0, virtualFile.getPath().length() - 2);
+                }
+                paths[i] = path;
+            }
+            return paths;
+        }
+    }
+
     private class ProjectPathsFinder implements Computable<String[]> {
         @Override
         public String[] compute() {
@@ -294,11 +316,5 @@ public class BindingCompilerCompileTask implements CompileTask {
             os.write(buff, 0, count);
         }
         return os.toByteArray();
-    }
-
-    private static class UnexpectedJibxMappingFileXml extends Exception {
-        public UnexpectedJibxMappingFileXml(String message) {
-            super(message);
-        }
     }
 }
