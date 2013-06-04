@@ -9,6 +9,9 @@ import com.intellij.openapi.roots.ModuleFileIndex;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.startup.StartupManager;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.xml.XmlFile;
+import com.intellij.util.xml.DomFileElement;
+import com.intellij.util.xml.DomManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;

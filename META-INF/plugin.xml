@@ -41,14 +41,16 @@ TODO
 </pre>
     ]]>
 	</description>
-	<version>1.1-SNAPSHOT</version>
+	<version>1.1</version>
 	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
 	<idea-version since-build="129.451"/>
 	<change-notes>
 <![CDATA[
 <pre>
-1.1-SNAPSHOT (2013-06-03)
-- Fixed bug where jibx files without a mapping element were causing an error
+1.1 (2013-06-04)
+- Fixed bug where JiBX files without a mapping element were causing an error
+- JiBX validate and compile now adds library dependencies to classpath
+- JiBX validate and compile now adds module target directories of dependencies to classpath
 
 1.0 (2013-06-02)
 - Added auto detection of JiBX files based

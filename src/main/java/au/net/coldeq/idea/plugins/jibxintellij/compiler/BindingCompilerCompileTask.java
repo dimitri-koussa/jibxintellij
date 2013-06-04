@@ -8,9 +8,12 @@ import com.intellij.openapi.compiler.CompileTask;
 import com.intellij.openapi.compiler.CompilerMessageCategory;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.module.ModuleUtilCore;
+import com.intellij.openapi.roots.CompilerModuleExtension;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.roots.CompilerModuleExtension;
+import com.intellij.openapi.roots.impl.JavaModuleExternalPathsImpl;
+import com.intellij.openapi.roots.libraries.LibraryUtil;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.PathUtil;
@@ -48,9 +51,10 @@ public class BindingCompilerCompileTask implements CompileTask {
         logger.info("Executing BindingCompilerCompileTask.execute(): " + module.getName());
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
-        String[] libraries = ApplicationManager.getApplication().runReadAction(new LibraryPathsFinder(compileContext));
+        String[] libraries = ApplicationManager.getApplication().runReadAction(new LibraryPathsFinder());
+        String[] modules = ApplicationManager.getApplication().runReadAction(new ModulePathsFinder());
         String testOutput = ApplicationManager.getApplication().runReadAction(new TargetPathFinder(compileContext));
-        String result = ApplicationManager.getApplication().runReadAction(new BindingCompilerComputation(compileContext, projectPaths, output, testOutput));
+        String result = ApplicationManager.getApplication().runReadAction(new BindingCompilerComputation(compileContext, projectPaths, output, testOutput, libraries, modules));
 
         // abort the compilation process if there is an error compiling the binding
         return result.equals(Boolean.TRUE.toString());
@@ -61,12 +65,16 @@ public class BindingCompilerCompileTask implements CompileTask {
         private final String[] projectPaths;
         private final String output;
         private final String testOutput;
+        private final String[] libraries;
+        private final String[] modules;
 
-        private BindingCompilerComputation(CompileContext compileContext, String[] projectPaths, String output, String testOutput) {
+        private BindingCompilerComputation(CompileContext compileContext, String[] projectPaths, String output, String testOutput, String[] libraries, String[] modules) {
             this.compileContext = compileContext;
             this.projectPaths = projectPaths;
             this.output = output;
             this.testOutput = testOutput;
+            this.libraries = libraries;
+            this.modules = modules;
         }
 
         @Override
@@ -105,7 +113,13 @@ public class BindingCompilerCompileTask implements CompileTask {
                 }
 
                 List<String> paths = new ArrayList<String>();
-                paths.addAll(Arrays.asList(output, PathUtil.getJarPathForClass(Compile.class), PathUtil.getJarPathForClass(BindingDirectory.class)));
+                paths.addAll(Arrays.asList(
+                        output,
+                        PathUtil.getJarPathForClass(Compile.class),
+                        PathUtil.getJarPathForClass(BindingDirectory.class)
+                ));
+                paths.addAll(Arrays.asList(this.modules));
+                paths.addAll(Arrays.asList(this.libraries));
                 if (testOutput != null) {
                     paths.add(testOutput);
                 }
@@ -275,11 +289,10 @@ public class BindingCompilerCompileTask implements CompileTask {
     private class LibraryPathsFinder implements Computable<String[]> {
         @Override
         public String[] compute() {
-            ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
-            VirtualFile[] projectClasspath = rootManager.getRootPaths(OrderRootType.CLASSES);
-            String[] paths = new String[projectClasspath.length];
-            for (int i = 0; i < projectClasspath.length; i++) {
-                VirtualFile virtualFile = projectClasspath[i];
+            VirtualFile[] libraryRoots = LibraryUtil.getLibraryRoots(new Module[] {module}, false, false);
+            String[] paths = new String[libraryRoots.length];
+            for (int i = 0; i < libraryRoots.length; i++) {
+                VirtualFile virtualFile = libraryRoots[i];
                 String path = virtualFile.getPath();
                 if (path.endsWith("!/")) {
                     path = path.substring(0, virtualFile.getPath().length() - 2);
@@ -287,6 +300,25 @@ public class BindingCompilerCompileTask implements CompileTask {
                 paths[i] = path;
             }
             return paths;
+        }
+    }
+
+    private class ModulePathsFinder implements Computable<String[]> {
+        @Override
+        public String[] compute() {
+            try {
+                Set<Module> moduleDependencies = new HashSet<Module>();
+                ModuleUtilCore.getDependencies(module, moduleDependencies);
+                moduleDependencies.remove(module);
+
+                Set<String> paths = new HashSet<String>();
+                for (Module dependentModule : moduleDependencies) {
+                    paths.add(new URL(CompilerModuleExtension.getInstance(dependentModule).getCompilerOutputUrl()).getFile());
+                }
+                return paths.toArray(new String[paths.size()]);
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
