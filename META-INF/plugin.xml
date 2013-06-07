@@ -41,12 +41,16 @@ TODO
 </pre>
     ]]>
 	</description>
-	<version>1.1</version>
+	<version>1.2</version>
 	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
 	<idea-version since-build="129.451"/>
 	<change-notes>
 <![CDATA[
 <pre>
+1.2 (2013-06-07)
+- Fixed bug where plugin would attempt to run the JiBX binding compiler even when there were compile
+  errors
+
 1.1 (2013-06-04)
 - Fixed bug where JiBX files without a mapping element were causing an error
 - JiBX validate and compile now adds library dependencies to classpath
@@ -56,7 +60,7 @@ TODO
 - Added auto detection of JiBX files based
   of a simple regex
 - JiBX compiler is run over *all* known bindings if any of the classes that were just compiled
-  by idea had a <mapping class="fqn of class"> decleration in a jibx file.
+  by idea had a <mapping class="fqn of class"> declaration in a jibx file.
 </pre>
 ]]>
 	</change-notes>
