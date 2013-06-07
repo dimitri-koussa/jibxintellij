@@ -9,9 +9,6 @@ import com.intellij.openapi.roots.ModuleFileIndex;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.startup.StartupManager;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.xml.XmlFile;
-import com.intellij.util.xml.DomFileElement;
-import com.intellij.util.xml.DomManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashSet;
@@ -66,7 +63,7 @@ public class BindingCompilerModuleComponent implements ModuleComponent {
 
     @Override
     public void moduleAdded() {
-		CompilerManager.getInstance(module.getProject()).addAfterTask(new BindingCompilerCompileTask(module));
+        CompilerManager.getInstance(module.getProject()).addAfterTask(new BindingCompilerCompileTask(module));
     }
 
     @Override

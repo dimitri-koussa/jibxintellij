@@ -3,6 +3,7 @@ package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 import com.intellij.codeInsight.dataflow.SetUtil;
 import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.compiler.CompilationStatusListener;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileTask;
 import com.intellij.openapi.compiler.CompilerMessageCategory;
@@ -48,6 +49,10 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     @Override
     public boolean execute(final CompileContext compileContext) {
+        if (compileContext.getMessageCount(CompilerMessageCategory.ERROR) > 0) {
+            logger.info("Not executing BindingCompilerCompileTask.execute(): for module " + module.getName() + " because there were compile errors");
+            return true;
+        }
         logger.info("Executing BindingCompilerCompileTask.execute(): " + module.getName());
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
@@ -289,7 +294,7 @@ public class BindingCompilerCompileTask implements CompileTask {
     private class LibraryPathsFinder implements Computable<String[]> {
         @Override
         public String[] compute() {
-            VirtualFile[] libraryRoots = LibraryUtil.getLibraryRoots(new Module[] {module}, false, false);
+            VirtualFile[] libraryRoots = LibraryUtil.getLibraryRoots(new Module[]{module}, false, false);
             String[] paths = new String[libraryRoots.length];
             for (int i = 0; i < libraryRoots.length; i++) {
                 VirtualFile virtualFile = libraryRoots[i];
