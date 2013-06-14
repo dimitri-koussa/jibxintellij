@@ -35,17 +35,14 @@ public class BindingCompilerModuleComponent implements ModuleComponent {
 
     @Override
     public void initComponent() {
-        logger.info("Registering JibxBinder task to run after project has finished loading...");
         StartupManager.getInstance(module.getProject()).runWhenProjectIsInitialized(new Runnable() {
             @Override
             public void run() {
-                logger.info("Analyzing files to add to JiBX bind list for module: " + module.getName());
                 ModuleFileIndex fileIndex = ModuleRootManager.getInstance(module).getFileIndex();
                 fileIndex.iterateContent(new ContentIterator() {
                     @Override
                     public boolean processFile(VirtualFile fileOrDir) {
                         if (fileOrDir.getPath().matches("^.*/src/main/.*jibx.*/.*\\.xml$")) {
-                            logger.info("JibxBinder: +" + fileOrDir.getPath());
                             bindings.add(fileOrDir);
                         }
                         return true;

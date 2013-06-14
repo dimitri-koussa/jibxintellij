@@ -23,7 +23,6 @@ TODO
   in JiBX mapping file
 * Implement navigation from JiBX mapping
   file to class/fields.
-* Update to use the latest version of JiBX
 * Add java code references to the JiBX bindings
   files (i.e., when searching for usages of a
   field IDEA will show it as being used by JiBX)
@@ -41,12 +40,15 @@ TODO
 </pre>
     ]]>
 	</description>
-	<version>1.2</version>
+	<version>1.3</version>
 	<vendor url="http://www.coldeq.net.au" email="dimitri.koussa@gmail.com">Dimitri Koussa</vendor>
 	<idea-version since-build="129.451"/>
 	<change-notes>
 <![CDATA[
 <pre>
+1.3 (2013-06-13)
+- Upgraded JiBX to 1.2.5
+
 1.2 (2013-06-07)
 - Fixed bug where plugin would attempt to run the JiBX binding compiler even when there were compile
   errors

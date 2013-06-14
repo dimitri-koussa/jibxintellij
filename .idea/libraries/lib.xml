@@ -1,40 +1,15 @@
 <component name="libraryTable">
   <library name="lib">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jibx-run.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jibx-bind.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/bcel.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jibx-tools.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/qdox.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jibx-extras.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/xpp3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/bcel-5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jibx-bind-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jibx-tools-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jibx-extras-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jibx-run-1.2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/qdox-1.12.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xpp3-1.1.3.4.O.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="file://$PROJECT_DIR$/../jibx-core/build/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/build/docs/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/build/test" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/build/extras" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/build/jenable" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/bindgen/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/codegen/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/starter/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example1/start/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example1/client/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example1/server/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example2/start/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example2/client/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example2/server/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example3/start/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example3/client/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example3/server/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example4/start/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example4/client/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/example4/server/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/infoq-example/start/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/infoq-example/client/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/examples/jibx2wsdl/infoq-example/server/src" />
-      <root url="file://$PROJECT_DIR$/../jibx-core/tutorial" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

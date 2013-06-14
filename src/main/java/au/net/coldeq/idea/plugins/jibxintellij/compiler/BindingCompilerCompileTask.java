@@ -3,7 +3,6 @@ package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 import com.intellij.codeInsight.dataflow.SetUtil;
 import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.compiler.CompilationStatusListener;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileTask;
 import com.intellij.openapi.compiler.CompilerMessageCategory;
@@ -13,7 +12,6 @@ import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.roots.CompilerModuleExtension;
 import com.intellij.openapi.roots.ModuleRootManager;
 import com.intellij.openapi.roots.OrderRootType;
-import com.intellij.openapi.roots.impl.JavaModuleExternalPathsImpl;
 import com.intellij.openapi.roots.libraries.LibraryUtil;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -50,10 +48,8 @@ public class BindingCompilerCompileTask implements CompileTask {
     @Override
     public boolean execute(final CompileContext compileContext) {
         if (compileContext.getMessageCount(CompilerMessageCategory.ERROR) > 0) {
-            logger.info("Not executing BindingCompilerCompileTask.execute(): for module " + module.getName() + " because there were compile errors");
             return true;
         }
-        logger.info("Executing BindingCompilerCompileTask.execute(): " + module.getName());
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
         String output = ApplicationManager.getApplication().runReadAction(new OutputPathsFinder(compileContext));
         String[] libraries = ApplicationManager.getApplication().runReadAction(new LibraryPathsFinder());
@@ -84,7 +80,6 @@ public class BindingCompilerCompileTask implements CompileTask {
 
         @Override
         public String compute() {
-            logger.info("Executing BindingCompilerCompileTask.compute(): " + module.getName());
             ValidationContext vctx = null;
             Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();
 
@@ -135,7 +130,6 @@ public class BindingCompilerCompileTask implements CompileTask {
 
                 runJiBXCompiler(paths, bindingsPaths);
                 compileContext.addMessage(CompilerMessageCategory.INFORMATION, "JiBX binding compilation successful", null, 0, 0);
-                logger.info("Finished JiBX bind...");
                 return Boolean.TRUE.toString();
             } catch (JiBXException e) {
                 logJiBXExceptionToIdeaErrorConsole(vctx, e, compileContext);
@@ -191,7 +185,6 @@ public class BindingCompilerCompileTask implements CompileTask {
             while (vfIterator.hasNext()) {
                 VirtualFile binding = (VirtualFile) vfIterator.next();
                 String bindingPath = binding.getPath();
-                logger.info(String.format("Using binding: %s", bindingPath));
                 try {
                     BindingElement.validateBinding(binding.getPath(), new URL(binding.getUrl()), new ByteArrayInputStream(getStreamData(new FileInputStream(bindingPath))), vctx);
                 } catch (JiBXException e) {
