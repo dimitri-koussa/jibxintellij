@@ -208,8 +208,8 @@ public class BindingCompilerCompileTask implements CompileTask {
     private void runJiBXCompiler(List<String> paths, String[] bindingsPaths) throws JiBXException {
         Compile compiler = new Compile();
         compiler.setLoad(false);
-        compiler.setVerbose(true);
-        compiler.setVerify(true);
+        compiler.setVerbose(false);
+        compiler.setVerify(false);
         compiler.compile(paths.toArray(new String[paths.size()]), bindingsPaths);
     }
 
