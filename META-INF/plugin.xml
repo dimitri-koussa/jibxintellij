@@ -46,6 +46,9 @@ TODO
 	<change-notes>
 <![CDATA[
 <pre>
+1.4 (2014-03-10)
+- Updated plugin to use Java 7 and also now requires IDEA 13
+
 1.3 (2013-06-13)
 - Upgraded JiBX to 1.2.5
 - Made less verbose

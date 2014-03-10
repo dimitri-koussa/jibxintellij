@@ -1,5 +1,36 @@
 package au.net.coldeq.idea.plugins.jibxintellij.compiler;
 
+import static com.intellij.openapi.compiler.CompilerMessageCategory.ERROR;
+import static com.intellij.openapi.compiler.CompilerMessageCategory.INFORMATION;
+import static java.util.Arrays.asList;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamReader;
+
+import org.jibx.binding.Compile;
+import org.jibx.binding.classes.ClassCache;
+import org.jibx.binding.classes.ClassFile;
+import org.jibx.binding.model.BindingElement;
+import org.jibx.binding.model.ValidationContext;
+import org.jibx.binding.model.ValidationProblem;
+import org.jibx.runtime.BindingDirectory;
+import org.jibx.runtime.JiBXException;
+
 import com.intellij.codeInsight.dataflow.SetUtil;
 import com.intellij.ide.highlighter.JavaFileType;
 import com.intellij.openapi.application.ApplicationManager;
@@ -11,31 +42,14 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtilCore;
 import com.intellij.openapi.roots.CompilerModuleExtension;
 import com.intellij.openapi.roots.ModuleRootManager;
-import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.roots.libraries.LibraryUtil;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.util.PathUtil;
-import org.jibx.binding.Compile;
-import org.jibx.binding.classes.ClassCache;
-import org.jibx.binding.classes.ClassFile;
-import org.jibx.binding.model.BindingElement;
-import org.jibx.binding.model.ValidationContext;
-import org.jibx.binding.model.ValidationProblem;
-import org.jibx.runtime.BindingDirectory;
-import org.jibx.runtime.JiBXException;
-
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
 
 public class BindingCompilerCompileTask implements CompileTask {
 
-    // buffer size for copying stream input
+    // Buffer size for copying stream input
     private static final int COPY_BUFFER_SIZE = 1024;
 
     private Module module;
@@ -47,7 +61,7 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     @Override
     public boolean execute(final CompileContext compileContext) {
-        if (compileContext.getMessageCount(CompilerMessageCategory.ERROR) > 0) {
+        if (compileContext.getMessageCount(ERROR) > 0) {
             return true;
         }
         String[] projectPaths = ApplicationManager.getApplication().runReadAction(new ProjectPathsFinder());
@@ -57,7 +71,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         String testOutput = ApplicationManager.getApplication().runReadAction(new TargetPathFinder(compileContext));
         String result = ApplicationManager.getApplication().runReadAction(new BindingCompilerComputation(compileContext, projectPaths, output, testOutput, libraries, modules));
 
-        // abort the compilation process if there is an error compiling the binding
+        // Abort the compilation process if there is an error compiling the binding
         return result.equals(Boolean.TRUE.toString());
     }
 
@@ -81,68 +95,68 @@ public class BindingCompilerCompileTask implements CompileTask {
         @Override
         public String compute() {
             ValidationContext vctx = null;
-            Set<VirtualFile> bindings = module.getComponent(BindingCompilerModuleComponent.class).getBindings();
+            Set<VirtualFile> bindings = module.getComponent(au.net.coldeq.idea.plugins.jibxintellij.compiler.BindingCompilerModuleComponent.class).getBindings();
 
             try {
-                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Compiling JiBX bindings...", null, 0, 0);
+                compileContext.addMessage(INFORMATION, "Compiling JiBX bindings...", null, 0, 0);
 
                 if (bindings.size() == 0) {
-                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "No JiBX bindings found, nothing to do.", null, 0, 0);
+                    compileContext.addMessage(INFORMATION, "No JiBX bindings found, nothing to do.", null, 0, 0);
                     return Boolean.TRUE.toString();
                 }
-                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "Number of JiBX bindings found: " + bindings.size(), null, 0, 0);
+                compileContext.addMessage(INFORMATION, "Number of JiBX bindings found: " + bindings.size(), null, 0, 0);
 
                 Set<String> namesOfClassesFilesThatAreGoingToBeCompiled = convertFilesToClassNames(this.compileContext.getCompileScope().getFiles(JavaFileType.INSTANCE, true));
-                Set<String> namesOfClassesThatAreJibxBound = null;
+                Set<String> namesOfClassesThatAreJibxBound;
                 try {
                     namesOfClassesThatAreJibxBound = figureOutWhichClassesAreJibxBound(bindings);
                 } catch (IOException e) {
-                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unable to read file for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
+                    compileContext.addMessage(ERROR, String.format("Unable to read file for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
                     return Boolean.FALSE.toString();
                 } catch (XMLStreamException e) {
-                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unable to parse xml for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
+                    compileContext.addMessage(ERROR, String.format("Unable to parse xml for jibx post-compile tasks: %s", e.getMessage()), bindings.toString(), 0, 0);
                     return Boolean.FALSE.toString();
                 }
 
                 Set<String> jibxBoundClassesThatHaveBeenCompiled = SetUtil.intersect(namesOfClassesFilesThatAreGoingToBeCompiled, namesOfClassesThatAreJibxBound);
                 if (jibxBoundClassesThatHaveBeenCompiled.isEmpty()) {
-                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "No need to re-run any jibx bindings", bindings.toString(), 0, 0);
+                    compileContext.addMessage(INFORMATION, "No need to re-run any jibx bindings", bindings.toString(), 0, 0);
                     return Boolean.TRUE.toString();
                 } else {
-                    compileContext.addMessage(CompilerMessageCategory.INFORMATION, "jibx bound classes have been compiled: " + Arrays.toString(jibxBoundClassesThatHaveBeenCompiled.toArray()), null, 0, 0);
+                    compileContext.addMessage(INFORMATION, "jibx bound classes have been compiled: " + Arrays.toString(jibxBoundClassesThatHaveBeenCompiled.toArray()), null, 0, 0);
                 }
 
-                List<String> paths = new ArrayList<String>();
-                paths.addAll(Arrays.asList(
+                List<String> paths = new ArrayList<>();
+                paths.addAll(asList(
                         output,
                         PathUtil.getJarPathForClass(Compile.class),
                         PathUtil.getJarPathForClass(BindingDirectory.class)
                 ));
-                paths.addAll(Arrays.asList(this.modules));
-                paths.addAll(Arrays.asList(this.libraries));
+                paths.addAll(asList(this.modules));
+                paths.addAll(asList(this.libraries));
                 if (testOutput != null) {
                     paths.add(testOutput);
                 }
-                paths.addAll(Arrays.asList(projectPaths));
+                paths.addAll(asList(projectPaths));
 
                 String[] bindingsPaths = findBindings(bindings);
                 vctx = validateBindings(bindings, paths);
 
                 runJiBXCompiler(paths, bindingsPaths);
-                compileContext.addMessage(CompilerMessageCategory.INFORMATION, "JiBX binding compilation successful", null, 0, 0);
+                compileContext.addMessage(INFORMATION, "JiBX binding compilation successful", null, 0, 0);
                 return Boolean.TRUE.toString();
             } catch (JiBXException e) {
                 logJiBXExceptionToIdeaErrorConsole(vctx, e, compileContext);
                 return Boolean.FALSE.toString();
             } catch (Throwable t) {
                 logger.error("Unexpected global exception", t);
-                compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unexpected global exception: %s", t), null, 0, 0);
+                compileContext.addMessage(ERROR, String.format("Unexpected global exception: %s", t), null, 0, 0);
                 return Boolean.FALSE.toString();
             }
         }
 
         private Set<String> figureOutWhichClassesAreJibxBound(Set<VirtualFile> bindings) throws IOException, XMLStreamException {
-            Set<String> results = new HashSet<String>();
+            Set<String> results = new HashSet<>();
             for (VirtualFile binding : bindings) {
                 String classFoundInBindingXml = figureOutWhichClassIsJibxBound(binding);
                 if (classFoundInBindingXml != null) {
@@ -165,7 +179,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         }
 
         private Set<String> convertFilesToClassNames(VirtualFile[] files) {
-            Set<String> results = new HashSet<String>();
+            Set<String> results = new HashSet<>();
             for (VirtualFile file : files) {
                 String canonicalPath = file.getCanonicalPath();
                 if (canonicalPath.matches(".*src/[^/]*/java/.*")) {
@@ -188,7 +202,7 @@ public class BindingCompilerCompileTask implements CompileTask {
                 try {
                     BindingElement.validateBinding(binding.getPath(), new URL(binding.getUrl()), new ByteArrayInputStream(getStreamData(new FileInputStream(bindingPath))), vctx);
                 } catch (JiBXException e) {
-                    compileContext.addMessage(CompilerMessageCategory.ERROR, String.format("Unexpected exception while validating binding %s: %s", bindingPath, e.getMessage()), null, 0, 0);
+                    compileContext.addMessage(ERROR, String.format("Unexpected exception while validating binding %s: %s", bindingPath, e.getMessage()), null, 0, 0);
                 }
             }
             return vctx;
@@ -215,20 +229,20 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     private void logJiBXExceptionToIdeaErrorConsole(ValidationContext vctx, JiBXException e, CompileContext compileContext) {
         if (vctx == null) {
-            compileContext.addMessage(CompilerMessageCategory.ERROR, e.getMessage(), null, 0, 0);
+            compileContext.addMessage(ERROR, e.getMessage(), null, 0, 0);
         } else {
             List<ValidationProblem> problems = vctx.getProblems();
             for (ValidationProblem problem : problems) {
-                CompilerMessageCategory severity = CompilerMessageCategory.ERROR;
+                CompilerMessageCategory severity = ERROR;
                 switch (problem.getSeverity()) {
                     case ValidationProblem.WARNING_LEVEL:
                         severity = CompilerMessageCategory.WARNING;
                         break;
                     case ValidationProblem.ERROR_LEVEL:
-                        severity = CompilerMessageCategory.ERROR;
+                        severity = ERROR;
                         break;
                     case ValidationProblem.FATAL_LEVEL:
-                        severity = CompilerMessageCategory.ERROR;
+                        severity = ERROR;
                         break;
                 }
                 String message = problem.getDescription();
@@ -247,6 +261,7 @@ public class BindingCompilerCompileTask implements CompileTask {
     }
 
     private class TargetPathFinder implements Computable<String> {
+
         private CompileContext compileContext;
 
         private TargetPathFinder(CompileContext compileContext) {
@@ -258,7 +273,7 @@ public class BindingCompilerCompileTask implements CompileTask {
             try {
                 return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
             } catch (MalformedURLException e) {
-                compileContext.addMessage(CompilerMessageCategory.ERROR, "Can't find test output directory", null, 0, 0);
+                compileContext.addMessage(ERROR, "Can't find test output directory", null, 0, 0);
                 logger.error("Can't find test output directory", e);
             }
             return null;
@@ -266,6 +281,7 @@ public class BindingCompilerCompileTask implements CompileTask {
     }
 
     private class OutputPathsFinder implements Computable<String> {
+
         private final CompileContext compileContext;
 
         public OutputPathsFinder(CompileContext compileContext) {
@@ -277,7 +293,7 @@ public class BindingCompilerCompileTask implements CompileTask {
             try {
                 return new URL(CompilerModuleExtension.getInstance(module).getCompilerOutputUrl()).getFile();
             } catch (MalformedURLException e) {
-                compileContext.addMessage(CompilerMessageCategory.ERROR, "Can't find output directory", null, 0, 0);
+                compileContext.addMessage(ERROR, "Can't find output directory", null, 0, 0);
                 logger.error("Can't find output directory", e);
             }
             return null;
@@ -285,6 +301,7 @@ public class BindingCompilerCompileTask implements CompileTask {
     }
 
     private class LibraryPathsFinder implements Computable<String[]> {
+
         @Override
         public String[] compute() {
             VirtualFile[] libraryRoots = LibraryUtil.getLibraryRoots(new Module[]{module}, false, false);
@@ -302,14 +319,15 @@ public class BindingCompilerCompileTask implements CompileTask {
     }
 
     private class ModulePathsFinder implements Computable<String[]> {
+
         @Override
         public String[] compute() {
             try {
-                Set<Module> moduleDependencies = new HashSet<Module>();
+                Set<Module> moduleDependencies = new HashSet<>();
                 ModuleUtilCore.getDependencies(module, moduleDependencies);
                 moduleDependencies.remove(module);
 
-                Set<String> paths = new HashSet<String>();
+                Set<String> paths = new HashSet<>();
                 for (Module dependentModule : moduleDependencies) {
                     paths.add(new URL(CompilerModuleExtension.getInstance(dependentModule).getCompilerOutputUrl()).getFile());
                 }
@@ -324,7 +342,7 @@ public class BindingCompilerCompileTask implements CompileTask {
         @Override
         public String[] compute() {
             ModuleRootManager rootManager = ModuleRootManager.getInstance(module);
-            VirtualFile[] projectClasspath = rootManager.getRootPaths(OrderRootType.CLASSES);
+            VirtualFile[] projectClasspath = rootManager.getSourceRoots();
             String[] paths = new String[projectClasspath.length];
             for (int i = 0; i < projectClasspath.length; i++) {
                 VirtualFile virtualFile = projectClasspath[i];
@@ -340,11 +358,12 @@ public class BindingCompilerCompileTask implements CompileTask {
 
     private static byte[] getStreamData(InputStream is) throws IOException {
         byte[] buff = new byte[COPY_BUFFER_SIZE];
-        ByteArrayOutputStream os = new ByteArrayOutputStream();
-        int count;
-        while ((count = is.read(buff)) >= 0) {
-            os.write(buff, 0, count);
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
+            int count;
+            while ((count = is.read(buff)) >= 0) {
+                os.write(buff, 0, count);
+            }
+            return os.toByteArray();
         }
-        return os.toByteArray();
     }
 }

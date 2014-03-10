@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BindingCompilerModuleComponent implements ModuleComponent {
+
     private Module module;
     private Set<VirtualFile> bindings = new HashSet<VirtualFile>();
     private Logger logger = Logger.getInstance(getClass());
@@ -60,7 +61,7 @@ public class BindingCompilerModuleComponent implements ModuleComponent {
 
     @Override
     public void moduleAdded() {
-        CompilerManager.getInstance(module.getProject()).addAfterTask(new BindingCompilerCompileTask(module));
+        CompilerManager.getInstance(module.getProject()).addAfterTask(new au.net.coldeq.idea.plugins.jibxintellij.compiler.BindingCompilerCompileTask(module));
     }
 
     @Override
